@@ -700,6 +700,10 @@ video {
   height: 6rem;
 }
 
+.h-1 {
+  height: 0.25rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -819,6 +823,14 @@ video {
 
 .grid-cols-\[1fr_1fr_1\.5rem_1fr_1fr\] {
   grid-template-columns: 1fr 1fr 1.5rem 1fr 1fr;
+}
+
+.grid-cols-\[1fr_1fr_1\._1fr_1fr\] {
+  grid-template-columns: 1fr 1fr 1. 1fr 1fr;
+}
+
+.grid-cols-\[1fr_1fr__1fr_1fr\] {
+  grid-template-columns: 1fr 1fr  1fr 1fr;
 }
 
 .flex-row {

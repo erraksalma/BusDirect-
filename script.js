@@ -1,3 +1,3 @@
-const sg = document.getElementById("reserve-name");
-const sd = document.getElementById("reserve-seat");
-const sr = document.getElementById("btn-confirm");
+const entrernom = document.getElementById("reserve-name");
+const selectionSiege = document.getElementById("reserve-seat");
+const btnConfirmer = document.getElementById("btn-confirm"); 
