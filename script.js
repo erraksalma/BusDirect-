@@ -68,7 +68,10 @@ function reserver() {
 
     reservations.push({ nom: nom, siege: siege });
     noms.push(name);
+    remplirpassagerexict();
+    remplirsiegeexict();
     colorerSiege(siege, nom);
+    
     const option = selectionSiege.querySelector('option[value="' + siege + '"]');
     option.remove();
     selectionSiege.value = "";
@@ -81,3 +84,24 @@ formres.addEventListener("submit", e => {
     e.preventDefault();
     reserver();
 });
+
+const selectpasagerexict = document.getElementById("edit-passagerexict");
+const nouveaupasager = document.getElementById("edit-name");
+const nouveausiege = document.getElementById("edit-seat");
+const btnModifier = document.getElementById("btn-edit");
+const formmod = document.getElementById("modification-form");
+
+function remplirpassagerexict() {
+    selectpasagerexict.innerHTML = '<option value="">meme passager</option>';
+    for (let i = 0; i < noms.length ; i++) {
+        selectpasagerexict.add(new Option( noms[i], noms[i]));
+    }
+} 
+
+function remplirsiegeexict() {
+    nouveausiege.innerHTML = '<option value="">meme siege</option>';
+    for (let i = 0; i < reservations.length ; i++) {
+        nouveausiege.add(new Option( reservations[i].siege, reservations[i].siege));
+    }
+} 
+
