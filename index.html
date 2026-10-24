@@ -48,39 +48,39 @@
            <span>  Poste Conducteur </span>
           </div>
           <div id="seats" class="grid grid-cols-[1fr_1fr__1fr_1fr] gap-3">
-             <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="01">
+             <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="1">
       <span class="text-lg font-extrabold text-blue-950">01</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="02">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="2">
       <span class="text-lg font-extrabold text-blue-950">02</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-<div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="03">
+<div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="3">
       <span class="text-lg font-extrabold text-blue-950">03</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="04">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="4">
       <span class="text-lg font-extrabold text-blue-950">04</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="05">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="5">
       <span class="text-lg font-extrabold text-blue-950">05</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="06">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="6">
       <span class="text-lg font-extrabold text-blue-950">06</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="07">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="7">
       <span class="text-lg font-extrabold text-blue-950">07</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="08">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="8">
       <span class="text-lg font-extrabold text-blue-950">08</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
-    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="09">
+    <div class=" rounded-lg flex h-16 flex-col items-center justify-between  bg-yellow-50 p-2" data-seat="9">
       <span class="text-lg font-extrabold text-blue-950">09</span>
       <span class="text-xs text-slate-500">Libre</span>
     </div>
@@ -132,7 +132,7 @@
         </div>
        </div>
        <div class="space-y-6">
-        <div class=" bg-yellow-100 p-6 ">
+       <form id="reservation-form" class="bg-yellow-100 p-6">
     <h2 class="mb-4  border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
        Réserver une place
     </h2>
@@ -149,22 +149,22 @@
             class="min-w-0 flex-1  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
             <option value="">  Sièges</option>
           </select>
-          <button id="btn-confirm" type="button"
+          <button id="btn-confirm" type="submit"
             class="rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900">
             Confirmer
           </button>
         </div>
       </div>
     </div>
-  </div>
-       <div class=" bg-yellow-100 p-6 ">
+  </form>
+       <form id="modification-form" class="bg-yellow-100 p-6">
     <h2 class="mb-4  border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
        Modifier une place
     </h2>
     <div class="space-y-4">
       <div>
-        <label for="edit-passenger" class="mb-1 block text-xs font-semibold text-blue-950">Passager existant</label>
-        <select id="edit-passenger" class="w-full  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
+        <label for="edit-passager" class="mb-1 block text-xs font-semibold text-blue-950">Passager existant</label>
+        <select id="edit-passager" class="w-full  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
           <option> Choisir passager </option>
         </select>
       </div>
@@ -180,32 +180,32 @@
             class="min-w-0 flex-1  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
             <option value=""> Garder meme siège </option>
           </select>
-          <button id="btn-edit" type="button"
+          <button id="btn-edit" type="submit"
             class="rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900">
             Modifier
           </button>
         </div>
       </div>
     </div>
-  </div>
-       <div class=" bg-yellow-100 p-6 ">
-    <h2 class="mb-4  border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
+  </form>
+<form id="supresion-form" class="bg-yellow-100 p-6">
+      <h2 class="mb-4  border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
        Supprimer une reservation
     </h2>
     <div>
       <label for="delete-passager" class="mb-1 block text-xs font-semibold text-blue-950">Passager reserve</label>
       <div class="flex gap-2">
-        <select id="delete-passager"
+        <select id="select-passagerexist"
           class="min-w-0 flex-1  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
           <option> Choisir passager </option>
         </select>
-        <button id="btn-delete" type="button"
+        <button id="btn-delete" type="submit"
          class="rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900">
           Supprimer
         </button>
       </div>
     </div>
-  </div>
+  </form>
        </div>
       </section>
     </main>
