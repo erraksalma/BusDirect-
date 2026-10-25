@@ -5,6 +5,13 @@ let noms = [];
 let reservations = [];
 const price = 80;
 const totalS = 20;
+
+ let msg1 = document.createElement("p");
+    msg1.classList.add("text-red-500");
+    entrernom.after(msg1);
+
+
+
 function remplirrselect() {
     selectionSiege.innerHTML = '<option value="">choix automatique</option>';
     for (let i = 1; i <= totalS; i++) {
@@ -32,19 +39,23 @@ function colorerSiege(num, nom) {
     texte.textContent = nom;
     texte.classList.add("text-red-800");
 }
+  let msg = document.createElement("p");
+    msg.classList.add("text-red-500");
+    btnConfirmer.after(msg);
 
 function reserver() {
     const nom = entrernom.value.trim();
     let siege = Number(selectionSiege.value);
 
+  
     if (nom === "") {
-        alert("Le nom introvable");
+        msg1.textContent = "Le nom introvable";
         return;
     }
 
     const name = nom.toLowerCase();
     if (noms.includes(name)) {
-        alert("Ce passager a une reservation");
+    msg1.textContent = "Ce passager a une reservation";
         return;
     }
 
@@ -56,22 +67,16 @@ function reserver() {
             }
         }
     }
-    if (siege === 0) {
-        alert("Choisis un siège");
-        return;
-    }
-
-    if (siegeEtpris(siege)) {
-        alert("Ce siège est deja reserve");
-        return;
-    }
+  
 
     reservations.push({ nom: nom, siege: siege });
-    remplirsiegeexict();
     noms.push(name);
+        remplirsiegeexict();
     remplirpassagerexict();
-    
     colorerSiege(siege, nom);
+
+    msg.textContent= " reservation bien fait";
+
     
     const option = selectionSiege.querySelector('option[value="' + siege + '"]');
     option.remove();
@@ -90,23 +95,106 @@ const selectpasagerexict = document.getElementById("edit-passagerexict");
 const nouveaupasager = document.getElementById("edit-name");
 const nouveausiege = document.getElementById("edit-seat");
 const btnModifier = document.getElementById("btn-edit");
-const formmod = document.getElementById("modification-form");
+
 
 function remplirpassagerexict() {
-    selectpasagerexict.innerHTML = '<option>meme passager</option>';
-    for (let i = 0; i < noms.length ; i++) {
+selectpasagerexict.innerHTML = '<option value="">même passager</option>';    for (let i = 0; i < noms.length ; i++) {
         selectpasagerexict.add(new Option( noms[i]));
     }
 } 
 
 function remplirsiegeexict() {
-    nouveausiege.innerHTML = '<option>meme siege</option>';
+    nouveausiege.innerHTML = '<option value="">meme siege</option>';
     for (let i = 1; i <= totalS; i++) {
         if (!siegeEtpris(i)) {
-            nouveausiege.add(new Option("Siège " + i));
+          nouveausiege.add(new Option("Siège " + i, i));
         }
     }
 }
 remplirsiegeexict(); 
 
+ let msg2 = document.createElement("p");
+    msg2.classList.add("text-red-500");
+    selectpasagerexict.after(msg2);
 
+
+ let msg3 = document.createElement("p");
+    msg3.classList.add("text-red-500");
+    btnModifier.after(msg3);
+
+function liberersiege(num) {
+    const carte = document.querySelector('[data-seat="' + num + '"]');
+
+    if (carte === null) return;
+
+    const texte = carte.children[1];
+    carte.classList.remove("bg-red-200");
+    carte.classList.add("bg-yellow-50");
+    texte.textContent = "Libre";
+    texte.classList.remove("text-red-800");
+}
+
+function modifier(){
+    const passagerexict = selectpasagerexict.value;
+    let passagernew = nouveaupasager.value.trim();
+    let siegenew = Number(nouveausiege.value);
+
+if(passagerexict ===""){
+    msg2.textContent = "tu doix entrer le nom"
+    return;
+}
+let reser = null;
+for(let i = 0; i < reservations.length; i++){
+  if(reservations[i].nom.toLowerCase()===passagerexict.toLowerCase()){
+    reser = reservations[i];
+    break;
+  }
+} 
+if (reser === null){
+    msg2.textContent = "reserv intouvable";
+    return;
+}
+let ancienSiege = reser.siege;
+if(siegenew!== 0 && siegeEtpris(siegenew)&& siegenew!== reser.siege){
+    msg2.textContent  = "siege deja reserve";
+    return;
+}
+if (passagernew !== "") {
+    for (let i = 0; i < noms.length; i++) {
+        if (noms[i].toLowerCase() === passagerexict.toLowerCase()) {
+             noms[i] = passagernew.toLowerCase();
+            break;
+        }
+    }
+
+    reser.nom = passagernew;
+    colorerSiege(reser.siege, reser.nom);
+}
+if (siegenew !== 0 && siegenew !== ancienSiege) {
+    liberersiege(ancienSiege);
+    reser.siege = siegenew;
+    colorerSiege(siegenew, reser.nom);
+}
+
+
+remplirpassagerexict();
+remplirsiegeexict();
+msg3.textContent= " modification bien fait";
+
+
+
+    nouveaupasager.value = "";
+    console.log("Nom du passager :", reser.nom);
+    console.log("Siège reserve :", reser.siege)
+ 
+
+}
+
+
+
+
+const formmod = document.getElementById("modification-form");
+formmod.addEventListener("submit", function(e) {
+    e.preventDefault();
+    modifier();
+});
