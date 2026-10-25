@@ -73,6 +73,7 @@ function reserver() {
     noms.push(name);
         remplirsiegeexict();
     remplirpassagerexict();
+    remplirpassagerexictDel()
     colorerSiege(siege, nom);
 
     msg.textContent= " reservation bien fait";
@@ -198,3 +199,13 @@ formmod.addEventListener("submit", function(e) {
     e.preventDefault();
     modifier();
 });
+
+const selectpassDel = document.getElementById("select-passagerexist");
+const btnSupprimer = document.getElementById("btn-delete");
+function remplirpassagerexictDel(){
+    selectpassDel.innerHTML= '<option value="">choisi passagere</option>';
+    for( let i=0 ; i < noms.length; i++){
+   selectpassDel.add(new Option(noms[i]));
+    }
+}
+
