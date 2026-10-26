@@ -179,6 +179,7 @@ if (siegenew !== 0 && siegenew !== ancienSiege) {
 
 
 remplirpassagerexict();
+remplirpassagerexictDel();
 remplirsiegeexict();
 msg3.textContent= " modification bien fait";
 
@@ -208,4 +209,44 @@ function remplirpassagerexictDel(){
    selectpassDel.add(new Option(noms[i]));
     }
 }
+ let msgDel = document.createElement("p");
+    msgDel.classList.add("text-red-500");
+    selectpassDel.after(msgDel);
+
+function Supprimer(){
+   const passagerDel = selectpassDel.value;
+   if(passagerDel===""){
+   msgDel.textContent="aucun passager n est choisi";
+   return;
+   }msgDel.textContent="";
+
+   let cont = -1;
+   for( let i = 0; i < reservations.length; i++){
+    if(reservations[i].nom.toLowerCase()===passagerDel.toLowerCase()){
+        cont = i;
+        break;
+    }
+   }
+   if(cont==-1){
+    msgDel.textContent="pasager introuvable";
+    return;
+   }
+
+   let siegeSupprime = reservations[cont].siege;
+   liberersiege(siegeSupprime);
+   reservations.splice(cont, 1);
+   noms.splice(cont, 1);
+   remplirpassagerexict(); 
+   remplirpassagerexictDel();
+   remplirsiegeexict();
+   msgDel.textContent="suppression bien fait";
+}
+const formsup = document.getElementById("supresion-form");
+formsup.addEventListener("submit", e=> {
+    e.preventDefault();
+    Supprimer();
+})
+
+
+
 
