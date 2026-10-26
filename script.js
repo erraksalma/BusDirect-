@@ -15,10 +15,12 @@ const totalS = 20;
 function remplirrselect() {
     selectionSiege.innerHTML = '<option value="">choix automatique</option>';
     for (let i = 1; i <= totalS; i++) {
+        
         selectionSiege.add(new Option("Siège " + i, i));
     }
 }
 remplirrselect();
+miseAjour();
 
 function siegeEtpris(pris) {
     for (let i = 0; i < reservations.length; i++) {
@@ -71,9 +73,11 @@ function reserver() {
 
     reservations.push({ nom: nom, siege: siege });
     noms.push(name);
-        remplirsiegeexict();
+    miseAjour();
+    remplirsiegeexict();
     remplirpassagerexict();
-    remplirpassagerexictDel()
+    remplirpassagerexictDel();
+    
     colorerSiege(siege, nom);
 
     msg.textContent= " reservation bien fait";
@@ -92,14 +96,15 @@ formres.addEventListener("submit", e => {
     reserver();
 });
 
-const selectpasagerexict = document.getElementById("edit-passagerexict");
+const selectpasagerexict = document.getElementById("edit-passagerexict"); 
 const nouveaupasager = document.getElementById("edit-name");
 const nouveausiege = document.getElementById("edit-seat");
 const btnModifier = document.getElementById("btn-edit");
 
 
 function remplirpassagerexict() {
-selectpasagerexict.innerHTML = '<option value="">même passager</option>';    for (let i = 0; i < noms.length ; i++) {
+selectpasagerexict.innerHTML = '<option value="">même passager</option>'; 
+   for (let i = 0; i < noms.length ; i++) {
         selectpasagerexict.add(new Option( noms[i]));
     }
 } 
@@ -181,6 +186,7 @@ if (siegenew !== 0 && siegenew !== ancienSiege) {
 remplirpassagerexict();
 remplirpassagerexictDel();
 remplirsiegeexict();
+miseAjour();
 msg3.textContent= " modification bien fait";
 
 
@@ -236,6 +242,7 @@ function Supprimer(){
    liberersiege(siegeSupprime);
    reservations.splice(cont, 1);
    noms.splice(cont, 1);
+   miseAjour();
    remplirpassagerexict(); 
    remplirpassagerexictDel();
    remplirsiegeexict();
@@ -247,6 +254,13 @@ formsup.addEventListener("submit", e=> {
     Supprimer();
 })
 
+function miseAjour(){
+    let siegelibre = totalS-reservations.length;
+    let recettetotal = reservations.length*price;
 
+    document.getElementById("total").textContent =totalS;
+    document.getElementById("libres").textContent = siegelibre;
+    document.getElementById("recette").textContent = recettetotal;
+}
 
 
