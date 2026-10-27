@@ -74,6 +74,7 @@ function reserver() {
     reservations.push({ nom: nom, siege: siege });
     noms.push(name);
     miseAjour();
+    sauv();
     remplirsiegeexict();
     remplirpassagerexict();
     remplirpassagerexictDel();
@@ -187,6 +188,8 @@ remplirpassagerexict();
 remplirpassagerexictDel();
 remplirsiegeexict();
 miseAjour();
+
+sauv();
 msg3.textContent= " modification bien fait";
 
 
@@ -242,6 +245,7 @@ function Supprimer(){
    liberersiege(siegeSupprime);
    reservations.splice(cont, 1);
    noms.splice(cont, 1);
+   sauv();  
    miseAjour();
    remplirpassagerexict(); 
    remplirpassagerexictDel();
@@ -263,4 +267,25 @@ function miseAjour(){
     document.getElementById("recette").textContent = recettetotal;
 }
 
+function sauv(){
+    localStorage.setItem("reservations", JSON.stringify(reservations));
+    localStorage.setItem("noms", JSON.stringify(noms));
+}
+function char(){
+    const donreservations = localStorage.getItem("reservations");
+    const donnoms = localStorage.getItem("noms");
+if(donreservations!==null){
+    reservations= JSON.parse(donreservations);
+}
+if(donnoms!==null){
+    noms= JSON.parse(donnoms);
+}
+}char();
 
+for(let i=0; i<reservations.length;i++){
+    colorerSiege(reservations[i].siege, reservations[i].nom);
+}
+remplirpassagerexict();
+remplirpassagerexict();
+remplirpassagerexictDel();
+miseAjour();
